@@ -7,9 +7,17 @@ namespace Conversor_BIN_DEC_HEX_2
     {
         static void Main(string[] args)
         {
-            string digito = Console.ReadLine();
+            Conversores conv = new Conversores { escolha = int.Parse(Console.ReadLine()) };
+
+            string digito = Console.ReadLine().ToUpper();
             string conversor = Conversores.ConvBin(digito);
             Console.WriteLine(conversor + "\n");
+
+            digito = Console.ReadLine();
+            conversor = Conversores.ConvDec(digito, conv.escolha);
+            Console.WriteLine(conversor + "\n");
+
+
         }
     }
 }
