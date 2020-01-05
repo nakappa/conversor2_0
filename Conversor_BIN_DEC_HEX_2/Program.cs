@@ -1,4 +1,5 @@
 ﻿using System;
+using Conversor_BIN_DEC_HEX_2.Conversor;
 
 namespace Conversor_BIN_DEC_HEX_2
 {
@@ -6,7 +7,9 @@ namespace Conversor_BIN_DEC_HEX_2
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            string digito = Console.ReadLine();
+            string conversor = Conversores.ConvBin(digito);
+            Console.WriteLine(conversor + "\n");
         }
     }
 }
