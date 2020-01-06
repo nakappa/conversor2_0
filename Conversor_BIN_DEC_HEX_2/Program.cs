@@ -9,11 +9,11 @@ namespace Conversor_BIN_DEC_HEX_2
         {
             Conversores conv = new Conversores { escolha = int.Parse(Console.ReadLine()) };
 
-            string digito = Console.ReadLine().ToUpper();
-            string conversor = Conversores.ConvBin(digito);
+            string digito = Console.ReadLine();
+            string conversor = Conversores.ConvBinHex(digito, conv.escolha);
             Console.WriteLine(conversor + "\n");
 
-            digito = Console.ReadLine();
+            digito = Console.ReadLine().ToUpper();
             conversor = Conversores.ConvDec(digito, conv.escolha);
             Console.WriteLine(conversor + "\n");
 

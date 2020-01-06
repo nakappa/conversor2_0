@@ -8,15 +8,16 @@ namespace Conversor_BIN_DEC_HEX_2.Conversor
     {
         public int escolha;
 
-        public static string ConvBin(string numero)
+        public static string ConvBinHex(string numero, int decide)
         {
             int valor = int.Parse(numero);
             List<int> lista = new List<int>();
+            int div = decide switch { 3 => 16, _ => 2 };
 
             while (valor != 0)
             {
-                int resultado = valor / 2;
-                int resto = valor % 2;
+                int resultado = valor / div;
+                int resto = valor % div;
                 int aux = resultado;
                 valor = aux;
                 lista.Insert(0, resto);
@@ -25,29 +26,48 @@ namespace Conversor_BIN_DEC_HEX_2.Conversor
             char[] convertido = new char[lista.Count];
             int pos = 0;
 
-            Console.WriteLine(convertido.Length);
-
             foreach (int a in lista)
             {
-                convertido[pos] = char.Parse(a.ToString());
+                string s = a switch
+                {
+                    0 => "0",
+                    1 => "1",
+                    2 => "2",
+                    3 => "3",
+                    4 => "4",
+                    5 => "5",
+                    6 => "6",
+                    7 => "7",
+                    8 => "8",
+                    9 => "9",
+                    10 => "A",
+                    11 => "B",
+                    12 => "C",
+                    13 => "D",
+                    14 => "E",
+                    _ => "F",
+                };
+
+                convertido[pos] = char.Parse(s);
                 pos++;
             }
 
-            return "Convertido em binário: " + new string(convertido);
+            if (decide == 3) Console.Write("Convertido em hexadecimal: ");
+            else Console.Write("Convertido em binário: ");
+
+            return new string(convertido);
         }
 
         public static string ConvDec(string numero, int decide)
         {
             Conversores decisao = new Conversores();
-            string s = numero.ToString();
-            double[] x = new double[s.Length];
+            string convertido = numero.ToString();
+            double[] x = new double[convertido.Length];
             double y;
             int pos = 0;
+            double exp = decide switch { 3 => 16, _ => 2 };
 
-            decisao.escolha = decide;
-            double exp = decide switch { 1 => 2, _ => 16 };
-
-            foreach (char a in s)
+            foreach (char a in convertido)
             {
                 int valor = a switch
                 {
@@ -69,7 +89,7 @@ namespace Conversor_BIN_DEC_HEX_2.Conversor
                     _ => 15
                 };
 
-                y = s.Length - pos - 1;
+                y = convertido.Length - pos - 1;
                 x[pos] = valor * Math.Pow(exp, y);
                 pos++;
             }
@@ -77,9 +97,9 @@ namespace Conversor_BIN_DEC_HEX_2.Conversor
             y = 0;
             for (int i = 0; i < x.Length; i++) y += x[i];
 
-            s = y.ToString();
+            convertido = y.ToString();
 
-            return "Convertido em decimal: " + s;
+            return "Convertido em decimal: " + convertido;
         }
     }
 }
