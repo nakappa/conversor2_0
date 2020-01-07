@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Conversor_BIN_DEC_HEX_2.Conversor
 {
-    class Conversores
+    public class Conversores
     {
         public int escolha;
+        public string numero;
 
         public static string ConvBinHex(string numero, int decide)
         {
@@ -52,16 +52,12 @@ namespace Conversor_BIN_DEC_HEX_2.Conversor
                 pos++;
             }
 
-            if (decide == 3) Console.Write("Convertido em hexadecimal: ");
-            else Console.Write("Convertido em binário: ");
-
             return new string(convertido);
         }
 
         public static string ConvDec(string numero, int decide)
         {
-            Conversores decisao = new Conversores();
-            string convertido = numero.ToString();
+            string convertido = numero;
             double[] x = new double[convertido.Length];
             double y;
             int pos = 0;
@@ -97,9 +93,7 @@ namespace Conversor_BIN_DEC_HEX_2.Conversor
             y = 0;
             for (int i = 0; i < x.Length; i++) y += x[i];
 
-            convertido = y.ToString();
-
-            return "Convertido em decimal: " + convertido;
+            return y.ToString();
         }
     }
 }

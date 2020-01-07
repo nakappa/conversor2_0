@@ -1,5 +1,4 @@
 ﻿using System;
-using Conversor_BIN_DEC_HEX_2.Conversor;
 
 namespace Conversor_BIN_DEC_HEX_2
 {
@@ -7,17 +6,12 @@ namespace Conversor_BIN_DEC_HEX_2
     {
         static void Main(string[] args)
         {
-            Conversores conv = new Conversores { escolha = int.Parse(Console.ReadLine()) };
+            ConsoleColor aux = Console.BackgroundColor;
+            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.WriteLine("CONVERSOR NUMÉRICO");
+            Console.BackgroundColor = aux;
 
-            string digito = Console.ReadLine();
-            string conversor = Conversores.ConvBinHex(digito, conv.escolha);
-            Console.WriteLine(conversor + "\n");
-
-            digito = Console.ReadLine().ToUpper();
-            conversor = Conversores.ConvDec(digito, conv.escolha);
-            Console.WriteLine(conversor + "\n");
-
-
+            Decisao.Escolher();
         }
     }
 }
