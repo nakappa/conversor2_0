@@ -6,6 +6,8 @@ namespace Conversor_BIN_DEC_HEX_2
     {
         public static string Verificar(string numero, int escolha)
         {
+            string invalido = "vou ver";
+            string conversor = "qual?";
             string erro = "nenhum";
             bool controlador = false;
 
@@ -19,18 +21,8 @@ namespace Conversor_BIN_DEC_HEX_2
                     }
                 }
 
-                if (controlador)
-                {
-                    ConsoleColor aux = Console.BackgroundColor;
-                    Console.BackgroundColor = ConsoleColor.DarkRed;
-                    ConsoleColor aux2 = Console.ForegroundColor;
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("FAVOR DIGITAR ALGARISMOS ENTRE 0 E 1!!!\n");
-                    Console.BackgroundColor = aux;
-                    Console.ForegroundColor = aux2;
-                    Console.Write("Digite um número binário: ");
-                    erro = "ok";
-                }
+                invalido = "\nFAVOR DIGITAR ALGARISMOS ENTRE 0 E 1!!!\n";
+                conversor = "Digite um número binário: ";
             }
 
             if (escolha == 2)
@@ -43,18 +35,8 @@ namespace Conversor_BIN_DEC_HEX_2
                     }
                 }
 
-                if (controlador)
-                {
-                    ConsoleColor aux = Console.BackgroundColor;
-                    Console.BackgroundColor = ConsoleColor.DarkRed;
-                    ConsoleColor aux2 = Console.ForegroundColor;
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("FAVOR DIGITAR ALGARISMOS ENTRE 0 À 9!!!\n");
-                    Console.BackgroundColor = aux;
-                    Console.ForegroundColor = aux2;
-                    Console.Write("Digite um número decimal: ");
-                    erro = "ok";
-                }
+                invalido = "\nFAVOR DIGITAR ALGARISMOS ENTRE 0 À 9!!!\n";
+                conversor = "Digite um número decimal: ";
             }
 
             if (escolha == 3)
@@ -67,20 +49,24 @@ namespace Conversor_BIN_DEC_HEX_2
                     }
                 }
 
-                if (controlador)
-                {
-                    ConsoleColor aux = Console.BackgroundColor;
-                    Console.BackgroundColor = ConsoleColor.DarkRed;
-                    ConsoleColor aux2 = Console.ForegroundColor;
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("FAVOR DIGITAR ALGARISMOS ENTRE 0 À 9 E OU A ATÉ F!!!\n");
-                    Console.BackgroundColor = aux;
-                    Console.ForegroundColor = aux2;
-                    Console.Write("Digite um número hexadecimal: ");
-                    erro = "ok";
-                }
+                invalido = "\nFAVOR DIGITAR ALGARISMOS ENTRE 0 À 9 E OU A ATÉ F!!!\n";
+                conversor = "Digite um número hexdecimal: ";
             }
 
+            
+            if (controlador)
+            {
+                ConsoleColor aux = Console.BackgroundColor;
+                Console.BackgroundColor = ConsoleColor.DarkRed;
+                ConsoleColor aux2 = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine(invalido);
+                Console.BackgroundColor = aux;
+                Console.ForegroundColor = aux2;
+                Console.Write(conversor);
+                erro = "ok";
+            }
+            
             return erro;
         }
     }

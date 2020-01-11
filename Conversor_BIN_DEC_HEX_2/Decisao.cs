@@ -1,21 +1,25 @@
 ﻿using System;
-using Conversor_BIN_DEC_HEX_2.Conversor;
 
 namespace Conversor_BIN_DEC_HEX_2
 {
     class Decisao
     {
-        public static void ChamandoConvBinHex(string digito, int escolha)
+        public static void ConvertendoDecEmBinOuHex(string numero, int escolha)
         {
-            string conversor = Conversores.ConvBinHex(digito, escolha);
-            if (escolha == 3) Console.WriteLine("Convertido em hexadecimal: " + conversor);
-            else Console.WriteLine("Convertido em binário: " + conversor);
+            string conversor = Conversores.ConvDecEmBinOuHex(numero, escolha);
+            //if (escolha == 3) Console.WriteLine("Convertido em hexadecimal: " + conversor);
+            //else Console.WriteLine("Convertido em binário: " + conversor);
+            Console.WriteLine("Convertido em binário: " + conversor);
+            numero = Conversores.ConvBinEmHexOuHexEmBin(conversor, escolha);
+            Console.WriteLine("Convertido em hexadecimal:" + numero);
         }
 
-        public static void ChamandoConvDec(string digito, int escolha)
+        public static void ConvertendoBinOuHexEmDec(string numero, int escolha)
         {
-            string conversor = Conversores.ConvDec(digito, escolha);
+            string conversor = Conversores.ConvBinOuHexEmDec(numero, escolha);
             Console.WriteLine("Convertido em decimal: " + conversor);
+            conversor = Conversores.ConvBinEmHexOuHexEmBin(numero, escolha);
+            Console.WriteLine("Convertido em hexadecimal:" + conversor);
         }
 
         public static void Escolher()
@@ -25,7 +29,6 @@ namespace Conversor_BIN_DEC_HEX_2
             bool controle = false;
             try
             {
-
                 while (!controle)
                 {
                     Console.Write("\nEscolha:" +
@@ -34,8 +37,8 @@ namespace Conversor_BIN_DEC_HEX_2
                         "\n3 - Para converter HEXADECIMAL em DECIMAL / BINÁRIO" +
                         "\n4 - Para SAIR: ");
 
-                    conv.escolha = int.Parse(Console.ReadLine());
-                    if (conv.escolha < 1 || conv.escolha > 4)
+                    conv.Escolha = int.Parse(Console.ReadLine());
+                    if (conv.Escolha < 1 || conv.Escolha > 4)
                     {
                         ConsoleColor aux = Console.BackgroundColor;
                         Console.BackgroundColor = ConsoleColor.DarkRed;
@@ -52,29 +55,27 @@ namespace Conversor_BIN_DEC_HEX_2
                             "\n4 - (SAIR): ");
                     }
 
-                    if (conv.escolha == 1)
+                    if (conv.Escolha == 1)
                     {
                         Console.Write("\nDigite um número binario: ");
-                        string digito = Console.ReadLine();
-
-                        //controle = 0;
+                        string numero = Console.ReadLine();
 
                         while (!controle)
                         {
-                            string erro = Verificador.Verificar(digito, conv.escolha);
+                            string erro = Verificador.Verificar(numero, conv.Escolha);
 
                             if (erro == "ok")
                             {
-                                digito = Console.ReadLine();
+                                numero = Console.ReadLine();
                                 controle = false;
                             }
 
                             else
                             {
-                                Console.WriteLine($"\nNúmero digitado foi: {digito}");
-                                ChamandoConvDec(digito, conv.escolha);
-                                ChamandoConvBinHex(Conversores.ConvDec(digito, conv.escolha), conv.escolha = 3);
-                                conv.escolha = 0;
+                                Console.WriteLine($"\nNúmero digitado foi: {numero}");
+                                ConvertendoBinOuHexEmDec(numero, conv.Escolha);
+                                ConvertendoDecEmBinOuHex(Conversores.ConvBinOuHexEmDec(numero, conv.Escolha), conv.Escolha = 3);
+                                conv.Escolha = 0;
                                 controle = true;
                             }
                         }
@@ -82,29 +83,26 @@ namespace Conversor_BIN_DEC_HEX_2
                         controle = false;
                     }
 
-                    if (conv.escolha == 2)
+                    if (conv.Escolha == 2)
                     {
                         Console.Write("\nDigite um número decimal: ");
-                        string digito = Console.ReadLine();
-
-                        //controle = 0;
+                        string numero = Console.ReadLine();
 
                         while (!controle)
                         {
-                            string erro = Verificador.Verificar(digito, conv.escolha);
+                            string erro = Verificador.Verificar(numero, conv.Escolha);
 
                             if (erro == "ok")
                             {
-                                digito = Console.ReadLine();
+                                numero = Console.ReadLine();
                                 controle = false;
                             }
 
                             else
                             {
-                                Console.WriteLine($"\nNúmero digitado foi: {digito}");
-                                ChamandoConvBinHex(digito, conv.escolha);
-                                ChamandoConvBinHex(digito, conv.escolha = 3);
-                                conv.escolha = 0;
+                                Console.WriteLine($"\nNúmero digitado foi: {numero}");
+                                ConvertendoDecEmBinOuHex(numero, conv.Escolha);
+                                conv.Escolha = 0;
                                 controle = true;
                             }
                         }
@@ -112,29 +110,27 @@ namespace Conversor_BIN_DEC_HEX_2
                         controle = false;
                     }
 
-                    if (conv.escolha == 3)
+                    if (conv.Escolha == 3)
                     {
                         Console.Write("\nDigite um número hexadecimal: ");
-                        string digito = Console.ReadLine().ToUpper();
-
-                        //controle = 0;
+                        string numero = Console.ReadLine().ToUpper();
 
                         while (!controle)
                         {
-                            string erro = Verificador.Verificar(digito, conv.escolha);
+                            string erro = Verificador.Verificar(numero, conv.Escolha);
 
                             if (erro == "ok")
                             {
-                                digito = Console.ReadLine().ToUpper();
+                                numero = Console.ReadLine().ToUpper();
                                 controle = false;
                             }
 
                             else
                             {
-                                Console.WriteLine($"\nNúmero digitado foi: {digito}");
-                                ChamandoConvDec(digito, conv.escolha);
-                                ChamandoConvBinHex(Conversores.ConvDec(digito, conv.escolha), conv.escolha = 1);
-                                conv.escolha = 0;
+                                Console.WriteLine($"\nNúmero digitado foi: {numero}");
+                                ConvertendoBinOuHexEmDec(numero, conv.Escolha);
+                                ConvertendoDecEmBinOuHex(Conversores.ConvBinOuHexEmDec(numero, conv.Escolha), conv.Escolha = 1);
+                                conv.Escolha = 0;
                                 controle = true;
                             }
                         }
@@ -142,9 +138,15 @@ namespace Conversor_BIN_DEC_HEX_2
                         controle = false;
                     }
 
-                    if (conv.escolha == 4)
+                    if (conv.Escolha == 4)
                     {
+                        ConsoleColor aux = Console.BackgroundColor;
+                        Console.BackgroundColor = ConsoleColor.DarkCyan;
+                        ConsoleColor aux2 = Console.ForegroundColor;
+                        Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine("\nADEUS!!!");
+                        Console.BackgroundColor = aux;
+                        Console.ForegroundColor = aux2;
                         controle = true;
                     }
                 }
