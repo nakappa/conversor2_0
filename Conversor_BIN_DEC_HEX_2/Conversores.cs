@@ -97,9 +97,9 @@ namespace Conversor_BIN_DEC_HEX_2
             return y.ToString();
         }
 
-        public static string ConvBinEmHexOuHexEmBin(string numero, int escolha)
+        public static string ConvBinEmHex(string numero, int escolha)
         {
-            char[] convertido = new char[numero.Length];
+            numero = "0" + numero;
             List<int> lista = new List<int>();
             double y = 0;
             int valor;
@@ -142,22 +142,22 @@ namespace Conversor_BIN_DEC_HEX_2
                 } while (valor != 0);
             }
 
-
-            int contador = (int)Math.Ceiling(lista.Count / 4d);
+            char[] convertido = new char[(int) Math.Ceiling(lista.Count / 4d)];
+            int contador = (int) Math.Ceiling(lista.Count / 4d);
 
             for (int i = 0; i < contador; i++)
             {
                 double[] x = new double[lista.Count];
 
-                for (double j = 0; j <= contador; j++)
+                for (double j = 0; j < 4; j++)
                 {
                     int a = lista[pegar];
                     valor = a;
                     x[pos] = valor * Math.Pow(exp, y);
+
+                    if (pegar == x.Length - 1) j = 4;
+                    
                     y++;
-
-                    if (pegar == x.Length - 1) j = contador;
-
                     pos++;
                     pegar++;
                 }
@@ -186,11 +186,12 @@ namespace Conversor_BIN_DEC_HEX_2
                     14 => 'E',
                     _ => 'F'
                 };
-
-                convertido[contador - i] = c;
+                
+                convertido[i] = c;
                 y = 0;
             }
 
+            Array.Reverse(convertido);
             return new string(convertido);
         }
     }
